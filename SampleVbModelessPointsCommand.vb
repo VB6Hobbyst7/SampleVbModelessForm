@@ -3,12 +3,12 @@ Imports Rhino.Commands
 
 Namespace SampleVbModelessForm
 
-  <System.Runtime.InteropServices.Guid("68386723-985b-4323-b6e9-9fdf12417b83")> _
-  Public Class SampleVbModelessFormCommand
+  <System.Runtime.InteropServices.Guid("27d6b91b-a6b4-4f72-9642-87f8577b26c4")> _
+  Public Class SampleVbModelessPointsCommand
     Inherits Command
 
-    Private Shared m_Instance As SampleVbModelessFormCommand
-    Private Shared m_Form As SampleVbModelessTextForm
+    Private Shared m_Instance As SampleVbModelessPointsCommand
+    Private Shared m_Form As SampleVbModelessPointsForm
 
     ''' <summary>
     ''' Constructor
@@ -22,7 +22,7 @@ Namespace SampleVbModelessForm
     ''' <summary>
     ''' The only instance of this command
     ''' </summary>
-    Public Shared ReadOnly Property Instance() As SampleVbModelessFormCommand
+    Public Shared ReadOnly Property Instance() As SampleVbModelessPointsCommand
       Get
         Return m_Instance
       End Get
@@ -31,11 +31,11 @@ Namespace SampleVbModelessForm
     ''' <summary>
     ''' Form accessor
     ''' </summary>
-    Public Shared Property Form() As SampleVbModelessTextForm
+    Public Shared Property Form() As SampleVbModelessPointsForm
       Get
         Return m_Form
       End Get
-      Set(value As SampleVbModelessTextForm)
+      Set(value As SampleVbModelessPointsForm)
         m_Form = value
       End Set
     End Property
@@ -45,7 +45,7 @@ Namespace SampleVbModelessForm
     ''' </returns>
     Public Overrides ReadOnly Property EnglishName() As String
       Get
-        Return "SampleVbModelessFormCommand"
+        Return "SampleVbModelessPointsCommand"
       End Get
     End Property
 
@@ -54,22 +54,15 @@ Namespace SampleVbModelessForm
     ''' </summary>
     Protected Overrides Function RunCommand(ByVal doc As RhinoDoc, ByVal mode As RunMode) As Result
 
-      If Form Is Nothing Then
-        Form = New SampleVbModelessTextForm()
-        AddHandler Form.FormClosed, AddressOf Form_FormClosed
+      If Form Is Nothing OrElse Form.IsDisposed Then
+        Form = New SampleVbModelessPointsForm()
         Form.Show(RhinoApp.MainWindow())
+      Else
+        Form.BringToFront()
       End If
 
       Return Result.Success
     End Function
-
-    ''' <summary>
-    ''' FormClosed EventHandler
-    ''' </summary>
-    Private Sub Form_FormClosed(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosedEventArgs)
-      Form.Dispose()
-      Form = Nothing
-    End Sub
 
   End Class
 

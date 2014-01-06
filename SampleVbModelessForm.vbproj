@@ -55,15 +55,14 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RhinoCommon">
+      <HintPath>..\..\..\..\Program Files\Rhinoceros 5.0 (64-bit)\System\RhinoCommon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="RhinoCommon">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Rhinoceros 5 (64-bit)\System\rhinocommon.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -90,6 +89,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="SampleVbModelessPointsForm.Designer.vb">
+      <DependentUpon>SampleVbModelessPointsForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SampleVbModelessPointsForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SampleVbModelessPointsCommand.vb" />
     <Compile Include="SampleVbModelessTextForm.Designer.vb">
       <DependentUpon>SampleVbModelessTextForm.vb</DependentUpon>
     </Compile>
@@ -103,6 +109,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SampleVbModelessPointsForm.resx">
+      <DependentUpon>SampleVbModelessPointsForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SampleVbModelessTextForm.resx">
       <DependentUpon>SampleVbModelessTextForm.vb</DependentUpon>
